@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://raw.githubusercontent.com/domo784/daddylive/refs/heads/main/epgs/daddylive-events-epg.xml"
+#EXTM3U url-tvg="https://raw.githubusercontent.com/domo784/mawdtings/refs/heads/main/epgs/daddylive-events-epg.xml"
 
 #EXTINF:-1 tvg-id="524e048bcdf96c5ef9c2ccc537b37686" tvg-logo="https://raw.githubusercontent.com/domo784/mawdtings/refs/heads/main/imgs/tv-logo.png" group-title="TV SHOWS",World Chase Tag New (NBCS BAY AREA)
 #EXTVLCOPT:http-origin=https://allupplay.xyz
