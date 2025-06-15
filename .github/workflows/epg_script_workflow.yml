@@ -31,4 +31,12 @@ jobs:
           mv epg.xml.gz epgs/
       - name: Commit output files
         run: |
-          git config --local user
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add epgs/
+          git commit -m "Update epgs folder" || echo "No changes to commit"
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.5.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
