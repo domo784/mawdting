@@ -87,9 +87,46 @@ def filter_and_build_epg(urls):
         except Exception as e:
             print(f"Failed to write EPG to {output_file_gz}: {e}")
 
+    # Create a GitHub Actions workflow to upload the output files
+    print("Creating GitHub Actions workflow...")
+    workflow_file = os.path.join(os.path.dirname(__file__), ".github/workflows/epg_workflow.yml")
+    with open(workflow_file, 'w') as f:
+        f.write("""
+name: EPG Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      - name: Run script
+        run: |
+          python epg_script.py
+      - name: Upload output files
+        uses: actions/upload-artifact@v2
+        with:
+          name: epg_output
+          path: epgs/
+""")
+
+    print("GitHub Actions workflow created.")
 
 urls = [
-    "http://m3u4u.com/xml/5g28nezee8sv3dk7yzpe",
+     "http://m3u4u.com/xml/5g28nezee8sv3dk7yzpe",
     "https://epgshare01.online/epgshare01/epg_ripper_AR1.xml.gz",
     "https://epgshare01.online/epgshare01/epg_ripper_AU1.xml.gz",
     "https://epgshare01.online/epgshare01/epg_ripper_BEIN1.xml.gz",
@@ -132,3 +169,4 @@ urls = [
 
 if __name__ == "__main__":
     filter_and_build_epg(urls)
+
