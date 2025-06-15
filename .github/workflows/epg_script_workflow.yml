@@ -1,0 +1,36 @@
+name: EPG Data Fetch
+
+on:
+  schedule:
+    - cron: 0 0 * * * # Run every day at midnight
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  fetch-epg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Run Python script
+        env:
+          NAME: "daddylive-channels"
+          SAVE_AS_GZ: "True"
+        run: |
+          python epg_script.py # Replace with your script name
+
+      - name: Upload EPG data
+        uses: actions/upload-artifact@v3
+        with:
+          name: epg-data
+          path: epgs/
