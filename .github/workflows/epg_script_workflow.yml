@@ -22,13 +22,13 @@ jobs:
       - name: Run script
         run: |
           python epg_script.py
-      - name: Upload output file as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: epg_output
-          path: epg.xml
-      - name: Upload gzipped output file as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: epg_output_gz
-          path: epg.xml.gz
+      - name: Create epgs folder
+        run: |
+          mkdir -p epgs
+      - name: Move output files to epgs folder
+        run: |
+          mv epg.xml epgs/
+          mv epg.xml.gz epgs/
+      - name: Commit output files
+        run: |
+          git config --local user
