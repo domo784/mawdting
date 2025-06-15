@@ -22,3 +22,13 @@ jobs:
       - name: Run script
         run: |
           python epg_script.py
+      - name: Upload output file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: epg_output
+          path: epg.xml
+      - name: Upload gzipped output file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: epg_output_gz
+          path: epg.xml.gz
