@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://github.com/MarkMCFC/tfms.xyz/tree/main/epgs/daddylive-channels-epg.xml"
+#EXTM3U url-tvg="https://raw.githubusercontent.com/domo784/mawdting/refs/heads/main/epgs/daddylive-channels-epg.xml"
 
 #EXTINF:-1 tvg-id="M+.Vamos.es" tvg-logo="https://github.com/MarkMCFC/tfms.xyz/tree/main/logos/vamos.png" group-title="SPAIN",#Vamos Spain
 #EXTVLCOPT:http-origin=https://allupplay.xyz
